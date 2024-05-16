@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="./src/output.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+        }
+
+        .bg-gradient-to-tr {
+            background-image: url('./images/cloudy.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            
+        }
+
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            padding: 1rem;
+            margin: 1rem;
+            color: #2c3e50;
+        }
+
+        header h1 {
+            color: #2c3e50;
+        }
+
+        section h2 {
+            color: #2c3e50;
+        }
+
+        input[type="text"] {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 0.5rem;
+            color: #2c3e50;
+        }
+
+        button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #2c3e50;
+        }
+
+        .grid div {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 1rem;
+            color: #2c3e50;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .weather-icon {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+
+<body class="bg-gradient-to-tr min-h-screen flex flex-col justify-center items-center">
+    <!-- Main Container -->
+    <div class="max-w-7xl w-full p-6 rounded-lg shadow-md glassmorphism">
+        
+        <!-- Header -->
+        <header class="w-full mb-8 text-center">
+            <h1 class="text-4xl font-bold">Weather App</h1>
+        </header>
+
+        <!-- Search Section -->
+        <section class="mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center justify-center">
+                <div class="flex flex-col items-center">
+                    <input type="text" id="city" list="recent-searches" placeholder="Enter city name" name="city"
+                        class="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring focus:border-blue-300 glassmorphism">
+                    <datalist id="recent-searches">
+                        <!-- Recent searches will be populated here by JavaScript -->
+                    </datalist>
+                    <button onclick="searchWeather()" class="px-4 py-2 rounded-md mt-2 focus:outline-none glassmorphism">Search</button>
+                </div>
+                <div class="text-center glassmorphism">
+                    <p>OR</p>
+                    <button class="hover:underline glassmorphism" onclick="searchCurrentLocation()">Use current Location</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Current Weather Report -->
+        <section class="mb-8 glassmorphism">
+            <h2 class="text-2xl font-semibold mb-4">Current Weather Report</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" id="current-weather">
+                <div class="p-4 rounded-lg shadow-md glassmorphism">
+                    <img src="icons/sunny.png" alt="Sunny" class="weather-icon">
+                    <h3 class="text-lg font-semibold mb-2 location">Location</h3>
+                    <p class="condition">Weather: Clear</p>
+                    <p class="temp">Temperature: 20°C</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Five-day Weather Forecast -->
+        <section class="glassmorphism">
+            <h2 class="text-2xl font-semibold mb-4">5-Day Weather Forecast</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+                <!-- Day 1 -->
+                <div class="p-4 rounded-lg shadow-md glassmorphism">
+                    <img src="icons/sunny.png" alt="Sunny" class="weather-icon1">
+                    <h3 class="text-lg font-semibold mb-2 day1date">Day 1</h3>
+                    <p class="day1condition">Weather: Sunny</p>
+                    <p class="day1temprature">Temperature: 25°C</p>
+                </div>
+
+                <!-- Day 2 -->
+                <div class="p-4 rounded-lg shadow-md glassmorphism">
+                    <img src="icons/cloudy.png" alt="Cloudy" class="weather-icon2">
+                    <h3 class="text-lg font-semibold mb-2 day2date">Day 2</h3>
+                    <p class="day2condition">Weather: Cloudy</p>
+                    <p class="day2temprature">Temperature: 22°C</p>
+                </div>
+
+                <!-- Day 3 -->
+                <div class="p-4 rounded-lg shadow-md glassmorphism">
+                    <img src="icons/rainy.png" alt="Rainy" class="weather-icon3">
+                    <h3 class="text-lg font-semibold mb-2 day3date">Day 3</h3>
+                    <p class="day3condition">Weather: Rainy</p>
+                    <p class="day3temprature">Temperature: 18°C</p>
+                </div>
+
+                <!-- Day 4 -->
+                <div class="p-4 rounded-lg shadow-md glassmorphism">
+                    <img src="icons/thunderstorm.png" alt="Thunderstorm" class="weather-icon4">
+                    <h3 class="text-lg font-semibold mb-2 day4date">Day 4</h3>
+                    <p class="day4condition">Weather: Thunderstorm</p>
+                    <p class="day4temprature">Temperature: 20°C</p>
+                </div>
+
+                <!-- Day 5 -->
+                <div class="p-4 rounded-lg shadow-md glassmorphism">
+                    <img src="icons/foggy.png" alt="Foggy" class="weather-icon5">
+                    <h3 class="text-lg font-semibold mb-2 day5date">Day 5</h3>
+                    <p class="day5condition">Weather: Foggy</p>
+                    <p class="day5temprature">Temperature: 15°C</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="action.js"></script>
+</body>
+
+</html>
