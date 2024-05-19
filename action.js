@@ -5,6 +5,8 @@ const day1Location = document.querySelector(".location");
 const day1Condition = document.querySelector(".condition");
 const day1Temp = document.querySelector(".temp");
 const image = document.querySelector(".weather-icon");
+const humedity0 = document.querySelector(".humedity0");
+const windSpeed0 = document.querySelector(".wind0");
 
 // Function to store search history in local storage
 const storeSearchHistory = (city) => {
@@ -120,6 +122,8 @@ const updateCurrentWeather = (data) => {
     day1Condition.innerHTML = `Weather: ${data.current.condition.text}`;
     day1Temp.innerHTML = `Temperature: ${data.current.feelslike_c}°C`;
     image.src = `${data.current.condition.icon}`;
+    humedity0.innerHTML = `Humiditiy: ${data.current.humidity}%`
+    windSpeed0.innerHTML = `Wind Speed: ${data.current.wind_kph}km/h`
 }
 
 const updateForecast = (forecast) => {
@@ -147,9 +151,7 @@ const updateForecast = (forecast) => {
             image.src = `${forecastDay.day.condition.icon}`;
             humidity.innerHTML = `Humidity: ${forecastDay.day.avghumidity}%`;
             wind.innerHTML = `Wind Speed: ${forecastDay.day.maxwind_kph}km/h`;
-        } else {
-            console.error(`Missing elements for day ${i}. Make sure the class names match.`);
-        }
+        } 
     }
 }
 
